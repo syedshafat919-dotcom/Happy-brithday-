@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Anisha 💜</title>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#1a0b2e;color:#fff;font-family:'Poppins',sans-serif;overflow-x:hidden}
+.stars{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle 2s infinite}
+@keyframes twinkle{0%,100%{opacity:.2}50%{opacity:1}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}}
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px;position:relative;z-index:1}
+.title{font-family:'Great Vibes',cursive;font-size:4rem;color:#f9e7b0;text-shadow:0 0 20px #a855f7,0 0 40px #a855f7;animation:float 4s ease-in-out infinite}
+.subtitle{margin-top:15px;font-size:1.3rem;letter-spacing:2px;color:#d8b4fe;animation:fadeIn 2s ease 1s both}
+.wish{max-width:600px;margin:40px auto;line-height:1.8;color:#e9d5ff;font-weight:300;min-height:120px}
+.cards{display:flex;gap:15px;justify-content:center;flex-wrap:wrap;margin:40px 0}
+.card{background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:25px;width:160px;text-align:center;transform:translateY(50px);opacity:0;transition:all .8s ease}
+.card.show{transform:translateY(0);opacity:1}
+.card h3{color:#f9e7b0;margin-top:10px}
+.music{position:sticky;bottom:20px;margin:20px auto;background:rgba(168,85,247,0.3);backdrop-filter:blur(15px);border-radius:50px;padding:12px 20px;display:flex;align-items:center;gap:15px;width:90%;max-width:400px;z-index:10;border:1px solid rgba(255,255,255,0.2);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 20px rgba(168,85,247,0.4)}50%{box-shadow:0 0 40px rgba(168,85,247,0.8)}}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.heart{position:fixed;bottom:-20px;color:#e879f9;animation:heartUp 4s linear forwards;pointer-events:none}
+@keyframes heartUp{0%{transform:translateY(0) scale(1);opacity:1}100%{transform:translateY(-100vh) scale(1.5);opacity:0}}
+.footer{padding:60px 20px;text-align:center;position:relative;z-index:1}
+</style>
+</head>
+<body>
+<div class="stars" id="stars"></div>
+
+<div class="hero">
+<h1 class="title">Happy Birthday<br>Anisha</h1>
+<p class="subtitle">✨ always keep happy and kind ✨</p>
+<div class="wish" id="wish"></div>
+
+<div class="cards">
+<div class="card"><div style="font-size:40px">💜</div><h3>Kind Heart</h3><p style="font-size:12px;margin-top:8px;opacity:.8">Your compassion inspires everyone</p></div>
+<div class="card"><div style="font-size:40px">☀️</div><h3>Bright Smile</h3><p style="font-size:12px;margin-top:8px;opacity:.8">Your smile is like sunshine</p></div>
+<div class="card"><div style="font-size:40px">✨</div><h3>Pure Soul</h3><p style="font-size:12px;margin-top:8px;opacity:.8">Authentic & beautifully true</p></div>
+</div>
+</div>
+
+<div class="music">
+<div style="width:45px;height:45px;background:linear-gradient(135deg,#a855f7,#ec4899);border-radius:12px;display:flex;align-items:center;justify-content:center">🎵</div>
+<div style="flex:1"><b>I Found You</b><br><small style="opacity:.7">Now Playing • Anisha's Special</small></div>
+<div id="playBtn" style="width:40px;height:40px;background:#fff;color:#7e22ce;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer">▶</div>
+</div>
+
+<div class="footer">
+<h2 style="font-family:'Great Vibes',cursive;font-size:2.5rem;color:#f9e7b0">With care, respect & the warmest wishes</h2>
+<p style="margin-top:15px;opacity:.8">May this birthday celebrate all that you are — and all that you are becoming.<br>We love you, Anisha 💜</p>
+<p style="margin-top:30px;opacity:.5;font-size:12px">Made with love • 2025</p>
+</div>
+
+<audio id="audio" loop><source src="https://cdn.pixabay.com/download/audio/2022/03/24/audio_7d0d6d9a67.mp3" type="audio/mpeg"></audio>
+
+<script>
+// stars
+for(let i=0;i<100;i++){let s=document.createElement('div');s.className='star';s.style.left=Math.random()*100+'%';s.style.top=Math.random()*100+'%';s.style.width=s.style.height=Math.random()*3+1+'px';s.style.animationDelay=Math.random()*2+'s';document.getElementById('stars').appendChild(s)}
+// typing
+const text="Today we celebrate you, Anisha — the light that quietly brightens every room, the kindness that makes the world softer, and the soul that feels like home. From the moment I found you, everything felt more meaningful. May this new year bring you endless joy, peaceful mornings, wild dreams coming true, and reminders that you are deeply cherished. Keep shining — the world is better because you are in it. 💜";
+let idx=0;function type(){if(idx<text.length){document.getElementById('wish').innerHTML+=text.charAt(idx);idx++;setTimeout(type,25)}}type();
+// cards scroll animation
+const obs=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.2});document.querySelectorAll('.card').forEach(c=>obs.observe(c));
+// hearts
+setInterval(()=>{let h=document.createElement('div');h.className='heart';h.innerHTML='💜';h.style.left=Math.random()*100+'%';h.style.fontSize=Math.random()*20+10+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),4000)},600);
+// music
+const audio=document.getElementById('audio'),btn=document.getElementById('playBtn');let playing=false;btn.onclick=()=>{if(!playing){audio.play();btn.innerHTML='⏸';playing=true}else{audio.pause();btn.innerHTML='▶';playing=false}};
+</script>
+</body>
+  </html>
